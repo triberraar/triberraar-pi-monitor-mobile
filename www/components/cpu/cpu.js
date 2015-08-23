@@ -14,13 +14,13 @@ angular.module('cpu', [
             url:'/cpu',
             views: {
                 menuContent: {
-                    templateUrl: '/components/cpu/cpu-ionic.html'
+                    templateUrl: 'components/cpu/cpu-ionic.html'
                 }
             }
         })
         .state('cpu.history', {
             url:'/history',
-            templateUrl: '/components/cpu/cpu-history.html'
+            templateUrl: 'components/cpu/cpu-history.html'
         });
 })
     .factory('cpuDataService', function($timeout, socket, moment, growl, refreshIntervalService){

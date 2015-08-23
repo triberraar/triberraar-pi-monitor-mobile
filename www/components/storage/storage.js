@@ -14,7 +14,7 @@ angular.module('storage', [
             url:'/storage',
             views: {
                 menuContent: {
-                    templateUrl: '/components/storage/storage-ionic.html'
+                    templateUrl: 'components/storage/storage-ionic.html'
                 }
             }
         });

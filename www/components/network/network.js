@@ -14,13 +14,13 @@ angular.module('network', [
             url:'/network',
             views: {
                 menuContent: {
-                    templateUrl: '/components/network/network-ionic.html'
+                    templateUrl: 'components/network/network-ionic.html'
                 }
             }
         })
         .state('network.history', {
             url:'/history',
-            templateUrl: '/components/network/network-history.html'
+            templateUrl: 'components/network/network-history.html'
         });
 })
     .factory('networkDataService', function($timeout, socket, moment, growl, refreshIntervalService){

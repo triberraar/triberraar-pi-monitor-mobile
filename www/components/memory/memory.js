@@ -14,13 +14,13 @@ angular.module('memory', [
             url:'/memory',
             views: {
                 menuContent: {
-                    templateUrl: '/components/memory/memory-ionic.html'
+                    templateUrl: 'components/memory/memory-ionic.html'
                 }
             }
         })
         .state('memory.history', {
             url:'/history',
-            templateUrl: '/components/memory/memory-history.html'
+            templateUrl: 'components/memory/memory-history.html'
         });
 })
     .factory('memoryDataService', function($timeout, socket, moment, growl, refreshIntervalService){

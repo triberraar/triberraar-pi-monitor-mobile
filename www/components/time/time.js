@@ -12,7 +12,7 @@ angular.module('time', [
             url:'/time',
             views: {
                 menuContent: {
-                    templateUrl: '/components/time/time-ionic.html'
+                    templateUrl: 'components/time/time-ionic.html'
                 }
             }
         });
