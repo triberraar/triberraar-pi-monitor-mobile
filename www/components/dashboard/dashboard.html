@@ -1,0 +1,15 @@
+<ion-view title="Dashboard">
+    <ion-content>
+        <div ng-controller="DashboardController as dashboardController">
+            <div ng-show="dashboardController.getFavorites().length === 0" class="alert alert-warning" role="alert">
+                No favorites configured!
+            </div>
+            <div ng-show="dashboardController.getFavorites().length > 0">
+                <div ng-repeat="favorite in dashboardController.getFavorites()">
+                    <div ng-include="favorite.templateUrl" ></div>
+                    <hr ng-hide="$last">
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

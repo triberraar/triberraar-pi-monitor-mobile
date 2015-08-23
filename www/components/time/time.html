@@ -1,0 +1,10 @@
+<div ng-controller="TimeController as timeController">
+    <h2>Time <a ng-click="timeController.toggleFavorite()"><i class="fa" ng-class="timeController.isFavorite() ? 'fa-bookmark' : 'fa-bookmark-o'"></i></a></h2>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            Raspberry Pi time: <strong>{{timeController.getTime()}}</strong>.<br>
+            Uptime: <strong>{{timeController.getUptime().years()}}</strong> years <strong>{{timeController.getUptime().months()}}</strong> months <strong>{{timeController.getUptime().days()}}</strong> days <strong>{{timeController.getUptime().hours()}}</strong> hours <strong>{{timeController.getUptime().minutes()}}</strong> minutes <strong>{{timeController.getUptime().seconds()}}</strong> seconds.
+        </div>
+    </div>
+</div>

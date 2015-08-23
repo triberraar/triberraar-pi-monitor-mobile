@@ -1,0 +1,38 @@
+<div ng-controller="MemoryController as memoryController">
+    <h2>Memory <a ng-click="memoryController.toggleFavorite()"><i class="fa" ng-class="memoryController.isFavorite() ? 'fa-bookmark' : 'fa-bookmark-o'"></i></a></h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="memoryRefreshInterval">Refresh every</label>
+            <div class="col-sm-3">
+                <select id="memoryRefreshInterval" class="form-control" ng-model="memoryController.refreshInterval" ng-options="item.caption for item in memoryController.refreshIntervals" ng-change="memoryController.refreshIntervalChanged()">
+
+                </select>
+            </div>
+            <ul class="nav nav-pills">
+                <li><button class="btn btn-primary" ng-click="memoryController.pause()"><i class="fa fa-pause"></i></button></li>
+                <li><button class="btn btn-primary" ng-click="memoryController.play()"><i class="fa fa-play"></i></button></li>
+            </ul>
+        </div>
+    </form>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-3 control-label">Total: <span class="badge">{{memoryController.convertBytesToHumanReadable(memoryController.getLatest().data.total)}}</span></label>
+                <label class="col-sm-3 control-label">Free: <span class="badge">{{memoryController.convertBytesToHumanReadable(memoryController.getLatest().data.free)}} ({{memoryController.getPercentage(memoryController.getLatest().data.total,memoryController.getLatest().data.free)}}%)</span></label>
+                <label class="col-sm-3 control-label">Used: <span class="badge">{{memoryController.convertBytesToHumanReadable(memoryController.getLatest().data.used)}} ({{memoryController.getPercentage(memoryController.getLatest().data.total,memoryController.getLatest().data.used)}}%)</span></label>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <progress>
+                <bar class="progress-striped" value="memoryController.getPercentage(memoryController.getLatest().data.total,memoryController.getLatest().data.used)" type="warning"><span>Used</span></bar>
+                <bar class="progress-striped" value="memoryController.getPercentage(memoryController.getLatest().data.total,memoryController.getLatest().data.free)" type="success">Free</bar>
+            </progress>
+        </div>
+    </div>
+
+    <a ng-show="memoryController.navigateToHistoryShown()" class="btn btn-primary" ui-sref="memory.history" role="button">To history</a>
+    <div ui-view></div>
+</div>

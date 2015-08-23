@@ -1,0 +1,37 @@
+<div ng-controller="StorageController as storageController">
+    <h2>Storage <a ng-click="storageController.toggleFavorite()"><i class="fa" ng-class="storageController.isFavorite() ? 'fa-bookmark' : 'fa-bookmark-o'"></i></a></h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="storageRefreshInterval">Refresh every</label>
+            <div class="col-sm-3">
+                <select id="storageRefreshInterval" class="form-control" ng-model="storageController.refreshInterval" ng-options="item.caption for item in storageController.refreshIntervals" ng-change="storageController.refreshIntervalChanged()">
+
+                </select>
+            </div>
+            <ul class="nav nav-pills">
+                <li><button class="btn btn-primary" ng-click="storageController.pause()"><i class="fa fa-pause"></i></button></li>
+                <li><button class="btn btn-primary" ng-click="storageController.play()"><i class="fa fa-play"></i></button></li>
+            </ul>
+        </div>
+    </form>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-3 control-label">Total: <span class="badge">{{storageController.convertBytesToHumanReadable(storageController.getData().total)}}</span></label>
+                <label class="col-sm-3 control-label">Free: <span class="badge">{{storageController.convertBytesToHumanReadable(storageController.getData().free)}} ({{storageController.getPercentage(storageController.getData().total,storageController.getData().free)}}%)</span></label>
+                <label class="col-sm-3 control-label">Used: <span class="badge">{{storageController.convertBytesToHumanReadable(storageController.getData().used)}} ({{storageController.getPercentage(storageController.getData().total,storageController.getData().used)}}%)</span></label>
+                <label class="col-sm-3 control-label">Reserved: <span class="badge">{{storageController.convertBytesToHumanReadable(storageController.getData().reserved)}} ({{storageController.getPercentage(storageController.getData().total,storageController.getData().reserved)}}%)</span></label>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <progress>
+                <bar class="progress-striped" value="storageController.getPercentage(storageController.getData().total,storageController.getData().reserved)" type="info"><span>Reserved</span></bar>
+                <bar class="progress-striped" value="storageController.getPercentage(storageController.getData().total,storageController.getData().used)" type="warning"><span>Used</span></bar>
+                <bar class="progress-striped" value="storageController.getPercentage(storageController.getData().total,storageController.getData().free)" type="success"><span>Free</span></bar>
+            </progress>
+        </div>
+    </div>
+</div>

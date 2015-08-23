@@ -1,0 +1,31 @@
+<div ng-controller="CpuController as cpuController">
+    <h2>Cpu <a ng-click="cpuController.toggleFavorite()"><i class="fa" ng-class="cpuController.isFavorite() ? 'fa-bookmark' : 'fa-bookmark-o'"></i></a></h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="cpuRefreshInterval">Refresh every</label>
+            <div class="col-sm-3">
+                <select id="cpuRefreshInterval" class="form-control" ng-model="cpuController.refreshInterval" ng-options="item.caption for item in cpuController.refreshIntervals" ng-change="cpuController.refreshIntervalChanged()">
+
+                </select>
+            </div>
+            <ul class="nav nav-pills">
+                <li><button class="btn btn-primary" ng-click="cpuController.pause()"><i class="fa fa-pause"></i></button></li>
+                <li><button class="btn btn-primary" ng-click="cpuController.play()"><i class="fa fa-play"></i></button></li>
+            </ul>
+        </div>
+    </form>
+    <h4>Load average</h4>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-2 control-label">1 min: <span class="badge">{{cpuController.getLatest().data.loadAvg['1min']}}</span></label>
+                <label class="col-sm-2 control-label">5 min: <span class="badge">{{cpuController.getLatest().data.loadAvg['5min']}}</span></label>
+                <label class="col-sm-2 control-label">15 min: <span class="badge">{{cpuController.getLatest().data.loadAvg['15min']}}</span></label>
+            </div>
+        </div>
+    </form>
+    <h4>Frequency <span class="label label-info">{{cpuController.getLatest().data.frequency}}MHz</span></h4>
+    <h4>Temperature <span class="label label-{{cpuController.getTemperatureStatus()}}">{{cpuController.getLatest().data.temperature}}°C</span></h4>
+    <a ng-show="cpuController.navigateToHistoryShown()" class="btn btn-primary" ui-sref="cpu.history" role="button">To history</a>
+    <div ui-view></div>
+</div>

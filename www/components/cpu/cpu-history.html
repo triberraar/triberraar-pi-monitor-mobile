@@ -1,0 +1,33 @@
+<div ng-controller="CpuHistoryController as cpuHistoryController">
+    <h3>Cpu history</h3>
+    <h4>Load average</h4>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="numberOfEntries">Number Of entries</label>
+            <div class="col-sm-3">
+                <select id="numberOfEntries" class="form-control" ng-model="cpuHistoryController.numberOfEntries" ng-options="item.caption for item in cpuHistoryController.numberOfEntriesList" ng-change="cpuHistoryController.updateNumberOfEntries()">
+
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <canvas id="loadAvg" class="chart chart-line" data="cpuHistoryController.loadAvgData"
+                    labels="cpuHistoryController.labels" series="cpuHistoryController.loadAvgSeries"
+                    options="cpuHistoryController.options" legend="true">
+            </canvas>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <canvas id="temperature" class="chart chart-line" data="cpuHistoryController.temperatureData"
+                    labels="cpuHistoryController.labels" series="cpuHistoryController.temperatureSeries"
+                    options="cpuHistoryController.options" legend="true">
+            </canvas>
+        </div>
+    </div>
+</div>
