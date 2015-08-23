@@ -1,0 +1,23 @@
+<div ng-controller="NetworkHistoryController as networkHistoryController">
+    <h3>Network history</h3>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="numberOfEntries">Number Of entries</label>
+            <div class="col-sm-3">
+                <select id="numberOfEntries" class="form-control" ng-model="networkHistoryController.numberOfEntries" ng-options="item.caption for item in networkHistoryController.numberOfEntriesList" ng-change="networkHistoryController.updateNumberOfEntries()">
+
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <canvas id="line" class="chart chart-line" data="networkHistoryController.getData()"
+                    labels="networkHistoryController.getLabels()" series="networkHistoryController.series"
+                    options="networkHistoryController.options" legend="true">
+            </canvas>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div ng-controller="NetworkController as networkController">
+    <h2>Network <a ng-click="networkController.toggleFavorite()"><i class="fa" ng-class="networkController.isFavorite() ? 'fa-bookmark' : 'fa-bookmark-o'"></i></a></h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="networkRefreshInterval">Refresh every</label>
+            <div class="col-sm-3">
+                <select id="networkRefreshInterval" class="form-control" ng-model="networkController.refreshInterval" ng-options="item.caption for item in networkController.refreshIntervals" ng-change="networkController.refreshIntervalChanged()">
+
+                </select>
+            </div>
+            <ul class="nav nav-pills">
+                <li><button class="btn btn-primary" ng-click="networkController.pause()"><i class="fa fa-pause"></i></button></li>
+                <li><button class="btn btn-primary" ng-click="networkController.play()"><i class="fa fa-play"></i></button></li>
+            </ul>
+        </div>
+    </form>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-3 control-label">Received: <span class="badge">{{networkController.convertBytesToHumanReadable(networkController.getLatest().data.rx)}} ({{networkController.calculateSpeedRX()}}/s)</span></label>
+                <label class="col-sm-3 control-label">Send: <span class="badge">{{networkController.convertBytesToHumanReadable(networkController.getLatest().data.tx)}} ({{networkController.calculateSpeedTX()}}/s)</span></label>
+            </div>
+        </div>
+    </form>
+
+    <a ng-show="networkController.navigateToHistoryShown()" class="btn btn-primary" ui-sref="network.history" role="button">To history</a>
+    <div ui-view></div>
+</div>

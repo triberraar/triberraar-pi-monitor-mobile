@@ -4,7 +4,13 @@ angular.module('util',[
 
 ])
     .factory('socket', function (socketFactory) {
-        return socketFactory();
+        var myIoSocket = io.connect('http://triberraar.ddns.net:7076/');
+
+        var mySocket = socketFactory({
+            ioSocket: myIoSocket
+        });
+
+        return mySocket;
     })
     .factory('_', function($window){
         return $window._;

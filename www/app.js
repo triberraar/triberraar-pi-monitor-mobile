@@ -10,8 +10,16 @@ angular.module('triberraarPiMonitorMobileApp', [
     'chart.js',
     'ngStorage',
     'angular-growl',
-    'util'])
-    .run(function ($ionicPlatform) {
+    'ui.bootstrap',
+    'util',
+    'refreshInterval',
+    'dashboard',
+    'cpu',
+    'memory',
+    'network',
+    'storage',
+    'time'])
+    .run(function ($ionicPlatform, timeDataService, cpuDataService, memoryDataService, networkDataService, storageDataService) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -24,6 +32,12 @@ angular.module('triberraarPiMonitorMobileApp', [
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+
+            timeDataService.init();
+            cpuDataService.init();
+            memoryDataService.init();
+            networkDataService.init();
+            storageDataService.init();
         });
     })
     .config(function ($urlRouterProvider, growlProvider) {
