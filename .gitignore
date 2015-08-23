@@ -8,3 +8,4 @@ plugins/
 .idea/misc.xml
 .idea/
 www/lib/
+my-release-key.keystore
